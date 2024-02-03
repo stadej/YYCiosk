@@ -14,10 +14,8 @@ const KIOSKCOORDS = {
 }
 
 export default function Map() {
-  const locationProvider = useLocation();
-  let loc = locationProvider.getLocation();
   const mapRef = useRef();
-  console.log(loc);
+  const locationProvider = useLocation();
 
   const APIKEY = "AAPK32a42f389c19427797b066aae489e1051fCSRLZe461fHqMhXOmahERtRv77LiehtVjik54LU5ubiFV_G87C9Y5C5JAGHWpz";
   const BASEMAP = "arcgis/streets";
@@ -33,11 +31,8 @@ export default function Map() {
         minZoom:2,
         maxZoom:20,
       });
-      if (loc !== undefined) {
-        map.setView(loc, 18);
-      } else {
-        map.setView([51.0268101, -114.058521], 18);
-      }
+
+      map.setView(locationProvider.getLocation(), 18);
 
       L.esri.Vector.vectorBasemapLayer(BASEMAP, { apiKey: APIKEY }).addTo(map);
     
@@ -107,9 +102,32 @@ export default function Map() {
         console.log(err)
     })
   }
-
+  const setMapCoords=(e)=> {
+    switch (e.target.id) {
+      case "0":
+        console.log(locationProvider.getLocation());
+        map.setView(locationProvider.getLocation(), 18);
+        break;
+      case "1":
+        map.setView(KIOSKCOORDS[1], 18);
+        break;
+      case "2":
+        map.setView(KIOSKCOORDS[2], 18);
+        break;
+      case "3":
+        map.setView(KIOSKCOORDS[3], 18);
+        break;
+      case "4":
+        map.setView(KIOSKCOORDS[4], 18);
+        break;
+      case "5":
+        map.setView(KIOSKCOORDS[5], 18);
+        break;
+    }
+  }
   return (
     <>
+      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="0">Current Location</button>
       <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="1">Calgary Tower</button>
       <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="2">Kensington</button>
       <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="3">Lion's Park</button>
@@ -120,22 +138,3 @@ export default function Map() {
   )
 }
 
-function setMapCoords(e) {
-  switch (e.target.id) {
-    case "1":
-      map.setView(KIOSKCOORDS[1], 18);
-      break;
-    case "2":
-      map.setView(KIOSKCOORDS[2], 18);
-      break;
-    case "3":
-      map.setView(KIOSKCOORDS[3], 18);
-      break;
-    case "4":
-      map.setView(KIOSKCOORDS[4], 18);
-      break;
-    case "5":
-      map.setView(KIOSKCOORDS[5], 18);
-      break;
-  }
-}

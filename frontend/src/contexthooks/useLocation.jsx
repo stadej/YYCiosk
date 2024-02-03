@@ -3,7 +3,7 @@ import {createContext, useContext, useEffect, useState} from "react";
 const LocationContext = createContext()
 // eslint-disable-next-line react/prop-types
 export const LocationProvider =({children})=>{
-    const [location, setLocation] = useState()
+    const [location, setLocation] = useState([51.0268101, -114.058521])
 
     let options = {
         enableHighAccuracy: true,

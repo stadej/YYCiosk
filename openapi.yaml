@@ -21,6 +21,24 @@ paths:
               schema:
                 type: string
 
+  /dataset{name}:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get a dataset
+      description:  Get a dataset in CSV format.
+      responses:
+        "200":
+          description: Dataset attached
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DataSet"
+
   /voice:
     post:
       summary: Process a voice command
@@ -32,9 +50,16 @@ paths:
         "200":
           description: Audio response.
           content:
-            application/jaon:
+            application/json:
               schema:
                 $ref: "#/components/schemas/VoiceConversion"
+      responses:
+        "503":
+          description: Conversion service unavailable.
+          content:
+            application/json:
+              schema:
+              type: string
 
 components:
   schemas:
@@ -48,3 +73,14 @@ components:
       required:
         - language
         - user_request
+    DataSet:
+      type: object
+      properties:
+        data:
+          type: array
+          description: "Array of data objects"
+          items:
+            description: "Datum object"
+            type: object
+      required:
+        - data

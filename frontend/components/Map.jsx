@@ -14,10 +14,8 @@ const KIOSKCOORDS = {
 }
 
 export default function Map() {
-  const locationProvider = useLocation();
-  let loc = locationProvider.getLocation();
   const mapRef = useRef();
-  console.log(loc);
+  const locationProvider = useLocation();
 
   const APIKEY = "AAPK32a42f389c19427797b066aae489e1051fCSRLZe461fHqMhXOmahERtRv77LiehtVjik54LU5ubiFV_G87C9Y5C5JAGHWpz";
   const BASEMAP = "arcgis/streets";
@@ -33,11 +31,8 @@ export default function Map() {
         minZoom:2,
         maxZoom:20,
       });
-      if (loc !== undefined) {
-        map.setView(loc, 18);
-      } else {
-        map.setView([51.0268101, -114.058521], 18);
-      }
+
+      map.setView(locationProvider.getLocation(), 15);
 
       L.esri.Vector.vectorBasemapLayer(BASEMAP, { apiKey: APIKEY }).addTo(map);
     
@@ -61,7 +56,7 @@ export default function Map() {
       }
 
       const washroomIcon = L.icon({
-        iconUrl:toilet,
+        iconUrl: toilet,
         iconSize: [50, 50], // size of the icon
         shadowSize: [50, 64], // size of the shadow
         iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
@@ -69,28 +64,23 @@ export default function Map() {
         popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       })
 
-      //let greenIcon = new trashCanMarker({iconUrl: toilet});
-      //L.marker([51.0268101, -114.058521], {icon: greenIcon}).addTo(map).bindPopup("Hello world");
-
-
-      //let trashCan = L.geoJSON().addTo(map);
-      //let washrooms = L.geoJSON(undefined, { icon: toilet }).addTo(map);
-      // need to figure out a way to style markers as they come from geojson
-      let washrooms;
       let trashCan;
+      let washrooms;
+
+      //iconsActive.map((tag, index) => {
+      // getGeoJson(tag.link).then(data => {
+      //    trashCan = L.geoJson(data, trashCanMarkerOptions);
+      //    trashCan.addTo(map);
+      //  });
+      //})
+
       getGeoJson("https://data.calgary.ca/resource/fwyk-8pth.geojson").then(data => {
-          //trashCan.addData(data);
-          trashCan = L.geoJson(data, trashCanMarkerOptions);
-          trashCan.addTo(map);
-        // trashCan.addTo(map);
+        trashCan = L.geoJson(data, trashCanMarkerOptions);
+        trashCan.addTo(map);
       });
-      let redDot;
       getGeoJson("https://data.calgary.ca/resource/jjkg-kv4n.geojson").then(data => {
-          //washrooms.addData(data)
-          washrooms = L.geoJson(data, washroomMarkerOptions);
-          redDot = L.geoJson(data);
-          washrooms.addTo(map);
-          redDot.addTo(map);
+        washrooms = L.geoJson(data, washroomMarkerOptions);
+        washrooms.addTo(map);
       });
     }
   }, []);
@@ -108,8 +98,52 @@ export default function Map() {
     })
   }
 
+
+  const showIcons = (e) => {
+    switch (e.target.id) {
+      case "food":
+        break;
+      case "emergency":
+        break;
+      case "trash":
+
+        break;
+      case "washroom":
+
+        break;
+      case "information":
+        break;
+      case "library":
+        break;
+    }
+  }
+
+  const setMapCoords = (e) => {
+    switch (e.target.id) {
+      case "0":
+        console.log(locationProvider.getLocation());
+        map.setView(locationProvider.getLocation(), 15);
+        break;
+      case "1":
+        map.setView(KIOSKCOORDS[1], 15);
+        break;
+      case "2":
+        map.setView(KIOSKCOORDS[2], 15);
+        break;
+      case "3":
+        map.setView(KIOSKCOORDS[3], 15);
+        break;
+      case "4":
+        map.setView(KIOSKCOORDS[4], 15);
+        break;
+      case "5":
+        map.setView(KIOSKCOORDS[5], 15);
+        break;
+    }
+  }
   return (
     <>
+      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="0">Current Location</button>
       <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="1">Calgary Tower</button>
       <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="2">Kensington</button>
       <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="3">Lion's Park</button>
@@ -120,22 +154,3 @@ export default function Map() {
   )
 }
 
-function setMapCoords(e) {
-  switch (e.target.id) {
-    case "1":
-      map.setView(KIOSKCOORDS[1], 18);
-      break;
-    case "2":
-      map.setView(KIOSKCOORDS[2], 18);
-      break;
-    case "3":
-      map.setView(KIOSKCOORDS[3], 18);
-      break;
-    case "4":
-      map.setView(KIOSKCOORDS[4], 18);
-      break;
-    case "5":
-      map.setView(KIOSKCOORDS[5], 18);
-      break;
-  }
-}

@@ -2,10 +2,10 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
+    "./pages/**/*.{js,jsx}",
+    "./components/**/*.{js,jsx}",
+    "./app/**/*.{js,jsx}",
+    "./src/**/*.{js,jsx}",
   ],
   prefix: "",
   theme: {
@@ -23,6 +23,11 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        white: "#fff",
+        crimson: "#c8102e",
+        black: "#000",
+        dimgray: "#4b4f55",
+
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -71,7 +76,35 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      spacing: {},
+      fontFamily: {
+        "open-sans": "'Open Sans'",
+      },
+      borderRadius: {
+        "6xl": "25px",
+      },
+    },
+    fontSize: {
+      "29xl": "48px",
+      "45xl": "64px",
+      xl: "20px",
+      "9xl": "28px",
+      inherit: "inherit",
+    },
+    screens: {
+      mq900: {
+        raw: "screen and (max-width: 900px)",
+      },
+      mq675: {
+        raw: "screen and (max-width: 675px)",
+      },
+      mq450: {
+        raw: "screen and (max-width: 450px)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+  corePlugins: {
+    preflight: false,
+  },
+};

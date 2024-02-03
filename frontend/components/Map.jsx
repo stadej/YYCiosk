@@ -1,12 +1,13 @@
 import { useEffect, useRef } from "react";
 import toilet from '/public/toilet-o.png'
+import trash from '/public/trash-o.png'
 
 export default function Map() {
   let map;
   const mapRef = useRef();
 
-  const apiKey = "AAPK32a42f389c19427797b066aae489e1051fCSRLZe461fHqMhXOmahERtRv77LiehtVjik54LU5ubiFV_G87C9Y5C5JAGHWpz";
-  const basemap = "arcgis/streets";
+  const APIKEY = "AAPK32a42f389c19427797b066aae489e1051fCSRLZe461fHqMhXOmahERtRv77LiehtVjik54LU5ubiFV_G87C9Y5C5JAGHWpz";
+  const BASEMAP = "arcgis/streets";
 
   useEffect(() => {
     if (mapRef && mapRef.current) {
@@ -20,24 +21,33 @@ export default function Map() {
         maxZoom:20,
       });
     
-      L.esri.Vector.vectorBasemapLayer(basemap, { apiKey: apiKey }).addTo(map);
+      L.esri.Vector.vectorBasemapLayer(BASEMAP, { apiKey: APIKEY }).addTo(map);
     
       //map.setView([51,-114], 9);
-      map.setView([51.0268101, -114.058521], 10);
+      map.setView([51.0268101, -114.058521], 15);
 
-      let trashCanMarkerOptions = {
-        radius: 8,
-        fillColor: "#000000",
-        color: "#000",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 1,
-        iconUrl: {toilet}
-      };
+      
+      const trashIcon = L.icon({
+        iconUrl: trash,
+        iconSize: [50, 50], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [-10, -10], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      })
 
-      let washroomMarkerOptions = {
-        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: {toilet}})
+      const washroomMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: washroomIcon})
       }
+
+      const washroomIcon = L.icon({
+        iconUrl:toilet,
+        iconSize: [50, 50], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      })
 
       //let greenIcon = new trashCanMarker({iconUrl: toilet});
       //L.marker([51.0268101, -114.058521], {icon: greenIcon}).addTo(map).bindPopup("Hello world");
@@ -49,17 +59,21 @@ export default function Map() {
       let washrooms;
       let trashCan;
       getGeoJson("https://data.calgary.ca/resource/fwyk-8pth.geojson").then(data => {
-          //trashCan.addData(data)
+          //trashCan.addData(data);
           trashCan = L.geoJson(data, {
             pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, trashCanMarkerOptions);
+              return L.circleMarker(latlng, trashCanMarkerOptions);
             }
-        }).addTo(map);
+        })
+        // trashCan.addTo(map);
       });
+      let redDot;
       getGeoJson("https://data.calgary.ca/resource/jjkg-kv4n.geojson").then(data => {
           //washrooms.addData(data)
-
           washrooms = L.geoJson(data, washroomMarkerOptions);
+          redDot = L.geoJson(data);
+          washrooms.addTo(map);
+          redDot.addTo(map);
       });
     }
   }, []);

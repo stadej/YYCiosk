@@ -1,11 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import toilet from '/public/toilet-o.png'
 import trash from '/public/trash-o.png'
+let map;
 
-export default function Map(props) {
-  const [mapCoordinates, setMapCoordinates] = useState([51.0268101, -114.058521]);
-  const [mapZoom, setMapZoom] = useState(18);
-  let map;
+const KIOSKCOORDS = {
+  "1": [51.0441723, -114.062458],
+  "2": [51.0524867, -114.1192084],
+  "3": [51.065668, -114.106506],
+  "4": [51.134695, -114.239238],
+  "5": [50.998362, -114.072767]
+}
+
+export default function Map() {
   const mapRef = useRef();
 
   const APIKEY = "AAPK32a42f389c19427797b066aae489e1051fCSRLZe461fHqMhXOmahERtRv77LiehtVjik54LU5ubiFV_G87C9Y5C5JAGHWpz";
@@ -14,7 +20,7 @@ export default function Map(props) {
   useEffect(() => {
     if (mapRef && mapRef.current) {
 
-      if(map !== undefined) {
+      if (map !== undefined) {
         map.remove();
       }
 
@@ -22,11 +28,11 @@ export default function Map(props) {
         minZoom:2,
         maxZoom:20,
       });
-    
+      map.setView([51.0268101, -114.058521], 18);
+
       L.esri.Vector.vectorBasemapLayer(BASEMAP, { apiKey: APIKEY }).addTo(map);
     
       //map.setView([51,-114], 9);
-      map.setView(mapCoordinates, mapZoom);
 
       const trashCanMarkerOptions = {
         pointToLayer: (feature, latLng) => L.marker(latLng, {icon: trashIcon})
@@ -95,7 +101,32 @@ export default function Map(props) {
 
   return (
     <>
+      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="1">Calgary Tower</button>
+      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="2">Kensington</button>
+      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="3">Lion's Park</button>
+      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="4">Tuscany</button>
+      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="5">Chinook</button>
       <div id="map" ref={mapRef}></div>
     </>
   )
+}
+
+function setMapCoords(e) {
+  switch (e.target.id) {
+    case "1":
+      map.setView(KIOSKCOORDS[1], 18);
+      break;
+    case "2":
+      map.setView(KIOSKCOORDS[2], 18);
+      break;
+    case "3":
+      map.setView(KIOSKCOORDS[3], 18);
+      break;
+    case "4":
+      map.setView(KIOSKCOORDS[4], 18);
+      break;
+    case "5":
+      map.setView(KIOSKCOORDS[5], 18);
+      break;
+  }
 }

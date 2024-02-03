@@ -1,35 +1,76 @@
 [
     {
         "imageUrl": "../../src/assets/food_icon.png",
-        "tagName": "Food"
+        "tagName": "Food",
+        "dataUrl": "",
+        "locationTypes": "",
+        "active": false,
+        "minZoom": "2",
+        "maxZoom": ""
+
     },
     {
         "imageUrl": "../../src/assets/bathroom_icon.png",
-        "tagName": "Food"
+        "tagName": "Bathroom",
+        "dataUrl": "",
+        "locationTypes": "",
+        "active": false,
+        "minZoom": "2",
+        "maxZoom": ""
     },
     {
         "imageUrl": "../../src/assets/trash_icon.png",
-        "tagName": "Trash"
+        "tagName": "Trash",
+        "dataUrl": "",
+        "locationTypes": "",
+        "active": false,
+        "minZoom": "2",
+        "maxZoom": ""
     },
     {
         "imageUrl": "../../src/assets/tourism_icon.png",
-        "tagName": "Tourism"
+        "tagName": "Tourism",
+        "dataUrl": "",
+        "locationTypes": "",
+        "active": false,
+        "minZoom": "2",
+        "maxZoom": ""
     },
     {
         "imageUrl": "../../src/assets/money_icon.png",
-        "tagName": "Money"
+        "tagName": "Money",
+        "dataUrl": "",
+        "locationTypes": "",
+        "active": false,
+        "minZoom": "2",
+        "maxZoom": ""
     },
     {
         "imageUrl": "../../src/assets/wifi_icon.png",
-        "tagName": "Wifi"
+        "tagName": "Wifi",
+        "dataUrl": "",
+        "locationTypes": "",
+        "active": false,
+        "minZoom": "2",
+        "maxZoom": ""
     },
     {
         "imageUrl": "../../src/assets/library_icon.png",
-        "tagName": "Library"
+        "tagName": "Library",
+        "dataUrl": "",
+        "locationTypes": "",
+        "active": false,
+        "minZoom": "2",
+        "maxZoom": ""
     },
     {
         "imageUrl": "../../src/assets/Emergency_icon.png",
-        "tagName": "Emergency"
+        "tagName": "Emergency",
+        "dataUrl": "",
+        "locationTypes": "",
+        "active": false,
+        "minZoom": "2",
+        "maxZoom": ""
     }
 
 

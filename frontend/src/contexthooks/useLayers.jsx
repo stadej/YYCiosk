@@ -12,10 +12,8 @@ const layerReducer = (state,action)=>{
             return[...state,
                 action.item]
         case("toggle"):
-            // eslint-disable-next-line no-case-declarations
             let newState = Object.assign([],state)
             newState[action.index].active = action.active
-            // console.log(newState[itemIndex])
             return newState
     }
 }

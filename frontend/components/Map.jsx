@@ -67,21 +67,23 @@ export default function Map() {
       let trashCan;
       let washrooms;
 
-      //iconsActive.map((tag, index) => {
-      // getGeoJson(tag.link).then(data => {
-      //    trashCan = L.geoJson(data, trashCanMarkerOptions);
-      //    trashCan.addTo(map);
-      //  });
-      //})
+      let iconsActive = {"link": "https://data.calgary.ca/resource/fwyk-8pth.geojson"};
+      Object.keys(iconsActive).forEach(async (tag, index) => {
+        await getGeoJson(iconsActive[tag]).then(data => {
+          let temp = L.geoJson(data, trashCanMarkerOptions);
+          console.log(tag);
+          temp.addTo(map);
+        });
+      })
 
-      getGeoJson("https://data.calgary.ca/resource/fwyk-8pth.geojson").then(data => {
-        trashCan = L.geoJson(data, trashCanMarkerOptions);
-        trashCan.addTo(map);
-      });
-      getGeoJson("https://data.calgary.ca/resource/jjkg-kv4n.geojson").then(data => {
-        washrooms = L.geoJson(data, washroomMarkerOptions);
-        washrooms.addTo(map);
-      });
+      //getGeoJson("https://data.calgary.ca/resource/fwyk-8pth.geojson").then(data => {
+      //  trashCan = L.geoJson(data, trashCanMarkerOptions);
+      //  trashCan.addTo(map);
+      //});
+      //getGeoJson("https://data.calgary.ca/resource/jjkg-kv4n.geojson").then(data => {
+      //  washrooms = L.geoJson(data, washroomMarkerOptions);
+      //  washrooms.addTo(map);
+      //});
     }
   }, []);
 

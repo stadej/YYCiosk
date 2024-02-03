@@ -1,8 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import toilet from '/public/toilet-o.png'
 import trash from '/public/trash-o.png'
 
-export default function Map() {
+export default function Map(props) {
+  const [mapCoordinates, setMapCoordinates] = useState([51.0268101, -114.058521]);
+  const [mapZoom, setMapZoom] = useState(18);
   let map;
   const mapRef = useRef();
 
@@ -24,14 +26,17 @@ export default function Map() {
       L.esri.Vector.vectorBasemapLayer(BASEMAP, { apiKey: APIKEY }).addTo(map);
     
       //map.setView([51,-114], 9);
-      map.setView([51.0268101, -114.058521], 15);
+      map.setView(mapCoordinates, mapZoom);
 
-      
+      const trashCanMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: trashIcon})
+      }
+
       const trashIcon = L.icon({
         iconUrl: trash,
         iconSize: [50, 50], // size of the icon
         shadowSize: [50, 64], // size of the shadow
-        iconAnchor: [-10, -10], // point of the icon which will correspond to marker's location
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
         shadowAnchor: [4, 62],  // the same for the shadow
         popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       })
@@ -60,11 +65,8 @@ export default function Map() {
       let trashCan;
       getGeoJson("https://data.calgary.ca/resource/fwyk-8pth.geojson").then(data => {
           //trashCan.addData(data);
-          trashCan = L.geoJson(data, {
-            pointToLayer: function (feature, latlng) {
-              return L.circleMarker(latlng, trashCanMarkerOptions);
-            }
-        })
+          trashCan = L.geoJson(data, trashCanMarkerOptions);
+          trashCan.addTo(map);
         // trashCan.addTo(map);
       });
       let redDot;

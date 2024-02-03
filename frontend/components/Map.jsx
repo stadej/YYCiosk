@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import toilet from '/public/toilet-o.png'
 import trash from '/public/trash-o.png'
+import { useLocation } from "@/src/contexthooks/useLocation";
+
 let map;
 
 const KIOSKCOORDS = {
@@ -12,7 +14,10 @@ const KIOSKCOORDS = {
 }
 
 export default function Map() {
+  const locationProvider = useLocation();
+  let loc = locationProvider.getLocation();
   const mapRef = useRef();
+  console.log(loc);
 
   const APIKEY = "AAPK32a42f389c19427797b066aae489e1051fCSRLZe461fHqMhXOmahERtRv77LiehtVjik54LU5ubiFV_G87C9Y5C5JAGHWpz";
   const BASEMAP = "arcgis/streets";
@@ -28,7 +33,11 @@ export default function Map() {
         minZoom:2,
         maxZoom:20,
       });
-      map.setView([51.0268101, -114.058521], 18);
+      if (loc !== undefined) {
+        map.setView(loc, 18);
+      } else {
+        map.setView([51.0268101, -114.058521], 18);
+      }
 
       L.esri.Vector.vectorBasemapLayer(BASEMAP, { apiKey: APIKEY }).addTo(map);
     

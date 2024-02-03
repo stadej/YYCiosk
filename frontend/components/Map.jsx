@@ -67,13 +67,12 @@ export default function Map() {
 
       let trashCan;
       let washrooms;
-
-      let iconsActive = {"link": "https://data.calgary.ca/resource/fwyk-8pth.geojson"};
+      let iconsActive = {"trash": ["https://data.calgary.ca/resource/fwyk-8pth.geojson", trashCanMarkerOptions], "washrooms": ["https://data.calgary.ca/resource/jjkg-kv4n.geojson", washroomMarkerOptions]};
       Object.keys(iconsActive).forEach(async (tag, index) => {
-        await getGeoJson(iconsActive[tag]).then(data => {
-          let temp = L.geoJson(data, trashCanMarkerOptions);
+        await getGeoJson(iconsActive[tag][0]).then(data => {
+          let temp = L.geoJson(data, iconsActive[tag][1]).bindPopup("Information from " + iconsActive[tag]);
           console.log(tag);
-          temp.addTo(map).bindPopup(tag);
+          temp.addTo(map);
         });
       })
 
@@ -99,26 +98,6 @@ export default function Map() {
     }).catch(err => {
         console.log(err)
     })
-  }
-
-
-  const showIcons = (e) => {
-    switch (e.target.id) {
-      case "food":
-        break;
-      case "emergency":
-        break;
-      case "trash":
-
-        break;
-      case "washroom":
-
-        break;
-      case "information":
-        break;
-      case "library":
-        break;
-    }
   }
 
   const setMapCoords = (e) => {

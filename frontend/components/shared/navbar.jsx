@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Navbar() {
-    const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(new Date());
 
-    useEffect(() => {
+  useEffect(() => {
       const intervalId = setInterval(() => {
-        setCurrentDate(new Date());
-      }, 1000);
-  
-      // Cleanup function to clear the interval when the component is unmounted
+          const newDate = new Date();
+          newDate.setSeconds(0);
+          setCurrentDate(newDate);
+      }, 1000); // Update every minute
+
       return () => clearInterval(intervalId);
-    }, []); // Empty dependency array ensures the effect runs only once on mount
-    const formattedDate = currentDate.toLocaleTimeString();
+  }, []);
+
+  // Custom formatting function for HH:MM with optional leading zero for hours
+  const formatTime = (date) => {
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+      const amOrPm = hours >= 12 ? 'PM' : 'AM';
+      const formattedHours = hours % 12 || 12; // Convert 24hr format to 12hr format
+      const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes; // Add leading zero if minutes < 10
+      return `${formattedHours}:${formattedMinutes} ${amOrPm}`;
+  };
+
+  const formattedDate = formatTime(currentDate);
 
   return (
     <header className="self-stretch flex flex-col items-center justify-start gap-[31px] max-w-full text-left text-29xl text-crimson font-open-sans mq675:gap-[31px]">
@@ -25,7 +37,7 @@ export default function Navbar() {
         />
         <div className="flex-1 flex flex-col items-start justify-start pt-2 px-0 pb-0">
           <div className="self-stretch flex flex-col items-start justify-start gap-[5px]">
-            <div className="relative whitespace-nowrap z-[1]">11:17am</div>
+            <div className="relative whitespace-nowrap z-[1]">{formattedDate}</div>
             <div className="self-stretch flex flex-row items-start justify-start py-0 pr-0 pl-1 text-9xl text-dimgray">
               <div className="flex flex-row items-end justify-start gap-[10px]">
                 <div className="h-[38px] relative inline-block">15°c</div>

@@ -1,0 +1,36 @@
+[
+    {
+        "imageUrl": "../../src/assets/food_icon.png",
+        "tagName": "Food"
+    },
+    {
+        "imageUrl": "../../src/assets/bathroom_icon.png",
+        "tagName": "Food"
+    },
+    {
+        "imageUrl": "../../src/assets/trash_icon.png",
+        "tagName": "Trash"
+    },
+    {
+        "imageUrl": "../../src/assets/tourism_icon.png",
+        "tagName": "Tourism"
+    },
+    {
+        "imageUrl": "../../src/assets/money_icon.png",
+        "tagName": "Money"
+    },
+    {
+        "imageUrl": "../../src/assets/wifi_icon.png",
+        "tagName": "Wifi"
+    },
+    {
+        "imageUrl": "../../src/assets/library_icon.png",
+        "tagName": "Library"
+    },
+    {
+        "imageUrl": "../../src/assets/Emergency_icon.png",
+        "tagName": "Emergency"
+    }
+
+
+]

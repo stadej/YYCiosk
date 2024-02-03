@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import toilet from '/public/toilet-o.png'
 import trash from '/public/trash-o.png'
 import { useLocation } from "@/src/contexthooks/useLocation";
+import { Button } from "./ui/button";
 
 let map;
 
@@ -72,7 +73,7 @@ export default function Map() {
         await getGeoJson(iconsActive[tag]).then(data => {
           let temp = L.geoJson(data, trashCanMarkerOptions);
           console.log(tag);
-          temp.addTo(map);
+          temp.addTo(map).bindPopup(tag);
         });
       })
 
@@ -145,12 +146,14 @@ export default function Map() {
   }
   return (
     <>
-      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="0">Current Location</button>
-      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="1">Calgary Tower</button>
-      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="2">Kensington</button>
-      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="3">Lion's Park</button>
-      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="4">Tuscany</button>
-      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="5">Chinook</button>
+      <div className="kiosk-btn-container flex gap-3">
+        <Button className="kiosk-btn bg-red-900 hover:bg-black" onClick={(e) => setMapCoords(e)} id="0">Current Location</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black" onClick={(e) => setMapCoords(e)} id="1">Calgary Tower</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black" onClick={(e) => setMapCoords(e)} id="2">Kensington</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black" onClick={(e) => setMapCoords(e)} id="3">Lion's Park</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black" onClick={(e) => setMapCoords(e)} id="4">Tuscany</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black" onClick={(e) => setMapCoords(e)} id="5">Chinook</Button>
+      </div>
       <div id="map" ref={mapRef}></div>
     </>
   )

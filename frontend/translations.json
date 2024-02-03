@@ -1,0 +1,67 @@
+{
+    "English": {
+        "Food": "Food",
+        "Water": "Water",
+        "Bathroom": "Bathroom",
+        "Tourism Office": "Tourism Office",
+        "Bank": "Bank",
+        "Wifi": "Wifi",
+        "Library": "Library",
+        "Emergency": "Emergency"
+    },
+
+    "French": {
+        "Food": "Nourriture",
+        "Water": "Eau",
+        "Bathroom": "Toilettes",
+        "Tourism Office": "L'Office du Tourisme",
+        "Bank": "Banque",
+        "Wifi": "Wifi",
+        "Library": "Bibliothèque",
+        "Emergency": "Urgence"
+    },
+
+    "Spanish": {
+        "Food": "Alimento",
+        "Water": "Agua",
+        "Bathroom": "Baño",
+        "Tourism Office": "Oficina de Turismo",
+        "Bank": "Banco",
+        "Wifi": "Wifi",
+        "Library": "Biblioteca",
+        "Emergency": "Emergencia"
+    },
+
+    "Chinese": {
+        "Food": "食物",
+        "Water": "水",
+        "Bathroom": "浴室",
+        "Tourism Office": "旅游局",
+        "Bank": "银行",
+        "Wifi": "无线上网",
+        "Library": "图书馆",
+        "Emergency": "紧急情况"
+    },
+
+    "Hindi": {
+        "Food": "खाना",
+        "Water": "पानी",
+        "Bathroom": "स्नानघर",
+        "Tourism Office": "पर्यटन कार्यालय",
+        "Bank": "किनारा",
+        "Wifi": "वाईफ़ाई",
+        "Library": "पुस्तकालय",
+        "Emergency": "आपातकाल"
+    },
+
+    "Filipino": {
+        "Food": "Pagkain",
+        "Water": "Tubig",
+        "Bathroom": "Banyo",
+        "Tourism Office": "Tanggapan ng Turismo",
+        "Bank": "bangko",
+        "Wifi": "Wifi",
+        "Library": "Aklatan",
+        "Emergency": "Emergency"
+    }
+}

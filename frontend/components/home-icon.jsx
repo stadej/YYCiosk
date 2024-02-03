@@ -2,7 +2,7 @@ import React from 'react'
 
 const HomeIconGroup = () => {
     return (
-      <footer className="w-screen self-stretch bg-crimson flex flex-row items-start justify-between pt-[45px] pb-11 pr-1.5 pl-[5px] box-border gap-[20px] max-w-full mq900:flex-wrap">
+      <footer className="w-screen  self-stretch bg-crimson flex flex-row items-start justify-between pt-[45px] pb-11 pr-1.5 pl-[5px] box-border gap-[20px] max-w-full mq900:flex-wrap">
         <div className="h-[217px] w-[1024px] relative bg-crimson hidden max-w-full" />
         <div className="w-[197px] flex flex-row items-center justify-end relative">
           <img

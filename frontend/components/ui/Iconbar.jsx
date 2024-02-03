@@ -2,7 +2,7 @@ import React from 'react';
 
 function Iconbar() {
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%' }} className='sticky top-[100vh]'>
       {/* div that has background color red, and holds icon divs */}
       <div style={{ backgroundColor: '#C8102E', height: '6rem', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         

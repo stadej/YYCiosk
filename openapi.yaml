@@ -53,6 +53,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/VoiceConversion"
+      responses:
+        "503":
+          description: Conversion service unavailable.
+          content:
+            application/json:
+              schema:
+              type: string
 
 components:
   schemas:

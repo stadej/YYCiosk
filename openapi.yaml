@@ -1,0 +1,50 @@
+openapi: 3.1.0
+info:
+  title: YYC-osk
+  description: An application for helping newcomers find their way around Calgary.
+  version: "0.1.0"
+
+servers:
+  - url: http://localhost:5001
+    description: Local host
+
+paths:
+  /:
+    get:
+      summary: Detect server
+      description: Detect whether the server is running or not.
+      responses:
+        "200":
+          description: Server is running.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /voice:
+    post:
+      summary: Process a voice command
+      description: Audio is sent from the frontend and the converted command is returned.
+      requestBody:
+        content:
+          audio/mpeg: {}
+      responses:
+        "200":
+          description: Audio response.
+          content:
+            application/jaon:
+              schema:
+                $ref: "#/components/schemas/VoiceConversion"
+
+components:
+  schemas:
+    VoiceConversion:
+      type: object
+      properties:
+        language:
+          type: string
+        user_request:
+          type: string
+      required:
+        - language
+        - user_request

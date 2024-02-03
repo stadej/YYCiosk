@@ -147,12 +147,12 @@ export default function Map() {
   return (
     <>
       <div className="kiosk-btn-container flex gap-3">
-        <Button className="kiosk-btn bg-red-900 hover:bg-black" onClick={(e) => setMapCoords(e)} id="0">Current Location</Button>
-        <Button className="kiosk-btn bg-red-900 hover:bg-black" onClick={(e) => setMapCoords(e)} id="1">Calgary Tower</Button>
-        <Button className="kiosk-btn bg-red-900 hover:bg-black" onClick={(e) => setMapCoords(e)} id="2">Kensington</Button>
-        <Button className="kiosk-btn bg-red-900 hover:bg-black" onClick={(e) => setMapCoords(e)} id="3">Lion's Park</Button>
-        <Button className="kiosk-btn bg-red-900 hover:bg-black" onClick={(e) => setMapCoords(e)} id="4">Tuscany</Button>
-        <Button className="kiosk-btn bg-red-900 hover:bg-black" onClick={(e) => setMapCoords(e)} id="5">Chinook</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="0">Current Location</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="1">Calgary Tower</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="2">Kensington</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="3">Lion's Park</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="4">Tuscany</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="5">Chinook</Button>
       </div>
       <div id="map" ref={mapRef}></div>
     </>

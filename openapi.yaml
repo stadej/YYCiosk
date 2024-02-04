@@ -2,10 +2,10 @@ openapi: 3.0.3
 info:
   title: YYC-osk
   description: An application for helping newcomers find their way around Calgary.
-  version: "0.1.5"
+  version: "0.1.6"
 
 servers:
-  - url: http://localhost:5001
+  - url: http://localhost:3000
     description: Local host
 
 paths:
@@ -21,7 +21,7 @@ paths:
               schema:
                 type: string
 
-  /dataset/{name}:
+  /api/dataset/{name}:
     parameters:
     - name: name
       description: "The name of the dataset to retrieve"
@@ -64,7 +64,7 @@ paths:
               schema:
                 type: string
 
-  /maps:
+  /api/maps:
     post:
       summary: Get map information
       description: Get map information from a provider like Google Maps.
@@ -100,7 +100,7 @@ paths:
               schema:
                 type: string
 
-  /voice:
+  /api/voice:
     post:
       summary: Process a voice command
       description: Audio is sent from the frontend and the converted command is returned.

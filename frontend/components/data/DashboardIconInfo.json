@@ -1,0 +1,76 @@
+[
+    {
+        "imageUrl": "../../src/assets/food_icon.png",
+        "tagName": "Food",
+        "dataUrl": "",
+        "locationTypes": [],
+        "active": false,
+        "minZoom": "2",
+        "maxZoom": ""
+    },
+    {
+        "imageUrl": "../../src/assets/bathroom_icon.png",
+        "tagName": "Bathroom",
+        "dataUrl": "https://data.calgary.ca/resource/jjkg-kv4n.geojson",
+        "locationTypes": [],
+        "active": true,
+        "minZoom": "2",
+        "maxZoom": ""
+    },
+    {
+        "imageUrl": "../../src/assets/trash_icon.png",
+        "tagName": "Trash",
+        "dataUrl": "",
+        "locationTypes": [],
+        "active": false,
+        "minZoom": "2",
+        "maxZoom": ""
+    },
+    {
+        "imageUrl": "../../src/assets/tourism_icon.png",
+        "tagName": "Tourism",
+        "dataUrl": "",
+        "locationTypes": [],
+        "active": false,
+        "minZoom": "2",
+        "maxZoom": ""
+    },
+    {
+        "imageUrl": "../../src/assets/money_icon.png",
+        "tagName": "Money",
+        "dataUrl": "",
+        "locationTypes": "",
+        "active": false,
+        "minZoom": "2",
+        "maxZoom": ""
+    },
+    {
+        "imageUrl": "../../src/assets/wifi_icon.png",
+        "tagName": "Wifi",
+        "dataUrl": "",
+        "locationTypes": [],
+        "active": false,
+        "minZoom": "2",
+        "maxZoom": ""
+    },
+    {
+        "imageUrl": "../../src/assets/library_icon.png",
+        "tagName": "Library",
+        "dataUrl": "",
+        "locationTypes": [],
+        "active": false,
+        "minZoom": "2",
+        "maxZoom": ""
+    },
+    {
+        "imageUrl": "../../src/assets/Emergency_icon.png",
+        "tagName": "Emergency",
+        "dataUrl": "https://data.calgary.ca/resource/s6f4-ijrf.geojson",
+        "locationTypes": [],
+        "active": true,
+        "minZoom": "2",
+        "maxZoom": ""
+    }
+
+
+]

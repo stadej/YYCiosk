@@ -1,7 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import toilet from '/public/toilet-o.png'
-import trash from '/public/trash-o.png'
+import toilet from '/src/assets/bathroom_icon.png'
+import trash from '/src/assets/trash_icon.png'
+import tourism from '/src/assets/trash_icon.png'
+import food from '/src/assets/food_icon.png';
+import money from '/src/assets/money_icon.png';
+import wifi from '/src/assets/wifi_icon.png';
+import library from '/src/assets/library_icon.png';
+import emergency from '/src/assets/emergency_icon.png';
 import { useLocation } from "@/src/contexthooks/useLocation";
+import { Button } from "./ui/button";
+import { useLayers } from "@/src/contexthooks/useLayers";
 
 let map;
 
@@ -14,10 +22,10 @@ const KIOSKCOORDS = {
 }
 
 export default function Map() {
-  const locationProvider = useLocation();
-  let loc = locationProvider.getLocation();
   const mapRef = useRef();
-  console.log(loc);
+  const locationProvider = useLocation();
+  const layerProvider = useLayers();
+  let layers = layerProvider.getLayers();
 
   const APIKEY = "AAPK32a42f389c19427797b066aae489e1051fCSRLZe461fHqMhXOmahERtRv77LiehtVjik54LU5ubiFV_G87C9Y5C5JAGHWpz";
   const BASEMAP = "arcgis/streets";
@@ -33,19 +41,14 @@ export default function Map() {
         minZoom:2,
         maxZoom:20,
       });
-      if (loc !== undefined) {
-        map.setView(loc, 18);
-      } else {
-        map.setView([51.0268101, -114.058521], 18);
-      }
+
+      map.setView(locationProvider.getLocation(), 15);
 
       L.esri.Vector.vectorBasemapLayer(BASEMAP, { apiKey: APIKEY }).addTo(map);
     
       //map.setView([51,-114], 9);
 
-      const trashCanMarkerOptions = {
-        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: trashIcon})
-      }
+
 
       const trashIcon = L.icon({
         iconUrl: trash,
@@ -55,43 +58,142 @@ export default function Map() {
         shadowAnchor: [4, 62],  // the same for the shadow
         popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       })
-
-      const washroomMarkerOptions = {
-        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: washroomIcon})
-      }
-
       const washroomIcon = L.icon({
-        iconUrl:toilet,
+        iconUrl: toilet,
         iconSize: [50, 50], // size of the icon
         shadowSize: [50, 64], // size of the shadow
         iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
         shadowAnchor: [4, 62],  // the same for the shadow
         popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       })
+      const foodIcon = L.icon({
+        iconUrl: food,
+        iconSize: [50, 50], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      })
+      const emergencyIcon = L.icon({
+        iconUrl: emergency,
+        iconSize: [50, 50], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      })
+      const moneyIcon = L.icon({
+        iconUrl: money,
+        iconSize: [50, 50], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      })
+      const tourismIcon = L.icon({
+        iconUrl: tourism,
+        iconSize: [50, 50], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      })
+      const wifiIcon = L.icon({
+        iconUrl: wifi,
+        iconSize: [50, 50], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      })
+      const libraryIcon = L.icon({
+        iconUrl: library,
+        iconSize: [50, 50], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      })
+      const bathroomMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: washroomIcon})
+      }
+      const trashCanMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: trashIcon})
+      }
+      const foodMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: foodIcon})
+      }
+      const libraryMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: libraryIcon})
+      }
+      const wifiMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: wifiIcon})
+      }
+      const moneyMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: moneyIcon})
+      }
+      const emergencyMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: emergencyIcon})
+      }
+      const tourismMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: tourismIcon})
+      }
 
-      //let greenIcon = new trashCanMarker({iconUrl: toilet});
-      //L.marker([51.0268101, -114.058521], {icon: greenIcon}).addTo(map).bindPopup("Hello world");
 
-
-      //let trashCan = L.geoJSON().addTo(map);
-      //let washrooms = L.geoJSON(undefined, { icon: toilet }).addTo(map);
-      // need to figure out a way to style markers as they come from geojson
-      let washrooms;
       let trashCan;
-      getGeoJson("https://data.calgary.ca/resource/fwyk-8pth.geojson").then(data => {
-          //trashCan.addData(data);
-          trashCan = L.geoJson(data, trashCanMarkerOptions);
-          trashCan.addTo(map);
-        // trashCan.addTo(map);
-      });
-      let redDot;
-      getGeoJson("https://data.calgary.ca/resource/jjkg-kv4n.geojson").then(data => {
-          //washrooms.addData(data)
-          washrooms = L.geoJson(data, washroomMarkerOptions);
-          redDot = L.geoJson(data);
-          washrooms.addTo(map);
-          redDot.addTo(map);
-      });
+      let washrooms;
+      let markerOptions;
+      Object.keys(layers).forEach(async () => {
+        for (let i = 0; i < layers.length; i++) {
+          console.log(layers[i]);
+          console.log(layers[i].imageUrl);
+          if (layers[i].active === true) {
+            await getGeoJson(layers[i].dataUrl).then(data => {
+              switch (layers[i].tagName) {
+                case "Food":
+                  markerOptions = foodMarkerOptions;
+                  break;
+                case "Bathroom":
+                  markerOptions = bathroomMarkerOptions;
+                  break;
+                case "Trash":
+                  markerOptions = trashCanMarkerOptions;
+                  break;
+                case "Tourism":
+                  markerOptions = tourismMarkerOptions;
+                  break;
+                case "Money":
+                  markerOptions = moneyMarkerOptions;
+                  break;
+                case "Wifi":
+                  markerOptions = wifiMarkerOptions;
+                  break;
+                case "Library":
+                  markerOptions = libraryMarkerOptions;
+                  break;
+                case "Emergency":
+                  markerOptions = emergencyMarkerOptions;
+                  break;
+                default:
+                  break;
+              }
+              let temp = L.geoJson(data, markerOptions).bindPopup("Information from " + layers[i].dataUrl);
+              temp.addTo(map);
+            });
+          }
+
+        }
+
+      })
+
+      //getGeoJson("https://data.calgary.ca/resource/fwyk-8pth.geojson").then(data => {
+      //  trashCan = L.geoJson(data, trashCanMarkerOptions);
+      //  trashCan.addTo(map);
+      //});
+      //getGeoJson("https://data.calgary.ca/resource/jjkg-kv4n.geojson").then(data => {
+      //  washrooms = L.geoJson(data, washroomMarkerOptions);
+      //  washrooms.addTo(map);
+      //});
     }
   }, []);
 
@@ -108,34 +210,41 @@ export default function Map() {
     })
   }
 
+  const setMapCoords = (e) => {
+    switch (e.target.id) {
+      case "0":
+        console.log(locationProvider.getLocation());
+        map.setView(locationProvider.getLocation(), 15);
+        break;
+      case "1":
+        map.setView(KIOSKCOORDS[1], 15);
+        break;
+      case "2":
+        map.setView(KIOSKCOORDS[2], 15);
+        break;
+      case "3":
+        map.setView(KIOSKCOORDS[3], 15);
+        break;
+      case "4":
+        map.setView(KIOSKCOORDS[4], 15);
+        break;
+      case "5":
+        map.setView(KIOSKCOORDS[5], 15);
+        break;
+    }
+  }
   return (
     <>
-      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="1">Calgary Tower</button>
-      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="2">Kensington</button>
-      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="3">Lion's Park</button>
-      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="4">Tuscany</button>
-      <button className="kiosk-btn" onClick={(e) => setMapCoords(e)} id="5">Chinook</button>
+      <div className="kiosk-btn-container flex gap-3">
+        <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="0">Current Location</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="1">Calgary Tower</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="2">Kensington</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="3">Lion's Park</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="4">Tuscany</Button>
+        <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="5">Chinook</Button>
+      </div>
       <div id="map" ref={mapRef}></div>
     </>
   )
 }
 
-function setMapCoords(e) {
-  switch (e.target.id) {
-    case "1":
-      map.setView(KIOSKCOORDS[1], 18);
-      break;
-    case "2":
-      map.setView(KIOSKCOORDS[2], 18);
-      break;
-    case "3":
-      map.setView(KIOSKCOORDS[3], 18);
-      break;
-    case "4":
-      map.setView(KIOSKCOORDS[4], 18);
-      break;
-    case "5":
-      map.setView(KIOSKCOORDS[5], 18);
-      break;
-  }
-}

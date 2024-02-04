@@ -1,0 +1,40 @@
+.dashboard--icons::-webkit-scrollbar {
+    /* display: none; */
+    
+}
+
+.dashboard--icons {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.dashboard--icons::-webkit-scrollbar {
+    /* display: none; */
+    width: 15px;
+    height: 15px;
+    
+}
+
+.dashboard--icons::-webkit-scrollbar-thumb {
+    background-color: #b7b9bb;
+    border-radius: 10px;
+    border: 3px solid transparent;
+    border-radius: 9px;
+    background-clip: content-box;
+    width: 20px;
+}
+
+.dashboard--icons::-webkit-scrollbar-track {
+
+}
+
+.dashboard--icons--list {
+    background-color: #C8102E;
+    height: 12rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 10rem;
+    
+}

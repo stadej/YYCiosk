@@ -75,6 +75,42 @@ export default function Navbar() {
 
   const formattedDate = formatTime(currentDate);
 
+
+  const [currentTemperature, setCurrentTemperature] = useState(0);
+
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      try {
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=51.0501&longitude=-114.0853&current=temperature_2m');
+        const data = await response.json();
+        // Extract current temperature from the response
+        const temperature = data.current.temperature_2m;
+        setCurrentTemperature(temperature);
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
+      }
+    };
+
+    fetchWeatherData();
+  }, []);
+
+  // takes in the temperature value and returns a descriptor word
+  const getTemperatureDescriptor = (temperature) => {
+    if (temperature >= 30) {
+      return 'Hot';
+    } else if (temperature >= 20) {
+      return 'Warm';
+    } else if (temperature >= 10) {
+      return 'Mild';
+    } else if (temperature >= 0) {
+      return 'Cool';
+    } else if (temperature >= -10) {
+      return 'Cold';
+    } else {
+      return 'Freezing';
+    }
+  };
+
   return (
     <header className="self-stretch flex flex-col items-center justify-start gap-[31px] max-w-full text-left text-29xl text-crimson font-open-sans mq675:gap-[31px]">
     <div className="w-[998px] flex flex-row items-start justify-between py-0 px-5 box-border gap-[20px] max-w-full">
@@ -90,9 +126,11 @@ export default function Navbar() {
             <div className="relative whitespace-nowrap z-[1]">{formattedDate}</div>
             <div className="self-stretch flex flex-row items-start justify-start py-0 pr-0 pl-1 text-9xl text-dimgray">
               <div className="flex flex-row items-end justify-start gap-[10px]">
-                <div className="h-[38px] relative inline-block">15°c</div>
+                <div className="h-[38px] relative inline-block">
+                  {currentTemperature}°C
+                </div>
                 <div className="h-[27px] relative text-xl font-light text-black inline-block whitespace-nowrap">
-                  Fair Conditions
+                  {getTemperatureDescriptor(currentTemperature)}
                 </div>
               </div>
             </div>
@@ -128,3 +166,12 @@ export default function Navbar() {
   </header>
 )
 }
+
+
+// export default function Navbar() {
+//   // add weather call here
+ 
+//    return (
+//      <div>15 C</div>
+//    )
+//  }

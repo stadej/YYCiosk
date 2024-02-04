@@ -190,10 +190,3 @@ export default function Navbar() {
 }
 
 
-// export default function Navbar() {
-//   // add weather call here
- 
-//    return (
-//      <div>15 C</div>
-//    )
-//  }

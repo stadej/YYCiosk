@@ -217,7 +217,6 @@ export default function Map() {
           fillOpacity: 0.5
         });
         youAreHere.addTo(map).bindPopup("You are here!");
-        console.log(locationProvider.getLocation());
         break;
       case "1":
         map.setView(KIOSKCOORDS[1], 15);

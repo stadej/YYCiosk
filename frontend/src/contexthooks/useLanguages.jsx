@@ -10,7 +10,10 @@ export const LanguageProvider =(props)=>{
     const getLanguage=()=>{
         return dictionary;
     }
-
+    const getLanguages=()=>{
+         // return dictionary.map(language=> {short:language.short})
+        return dictionary;
+    }
     const setLanguage=(lang)=>{
         setDictionary(translations[lang])
     }
@@ -31,7 +34,8 @@ export const LanguageProvider =(props)=>{
         <LanguageContext.Provider value={
             {
                 getLanguage,
-                setLanguage
+                setLanguage,
+                getLanguages
             }
         }>
             {/* eslint-disable-next-line react/prop-types */}

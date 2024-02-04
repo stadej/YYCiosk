@@ -28,6 +28,12 @@ export const LayersProvider=({children})=>{
         let layerIndex = layers.findIndex(({tagName})=> tagName === e.target.id);
         layersDispatch({type:"toggle",index:layerIndex,active:!layers[layerIndex].active})
     }
+    const toggleLayer=(tag)=>{
+        let layerIndex = layers.findIndex(({tagName})=> tagName === tag);
+        if(layerIndex > 0){
+            layersDispatch({type:"toggle",index:layerIndex,active:!layers[layerIndex].active})
+        }
+    }
 
     useEffect(() => {
         // console.log(layers);
@@ -38,7 +44,8 @@ export const LayersProvider=({children})=>{
             {
                 getLayers,
                 layersDispatch,
-                handleClick
+                handleClick,
+                toggleLayer
             }
         }>
             {children}

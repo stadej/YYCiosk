@@ -11,34 +11,34 @@ import Navbar from '@/components/shared/navbar'
 
 function App() {
   const [idle, setIdle] = useState(false);
-
+  let idleTime = 7000;
+  let idleTimer;
   const handleIdleState = () => {
     setIdle(true);
   };
-
-  const resetIdleTimer = () => {
-    setIdle(false);
+  const handleIdleTimeout = () => {
+    handleIdleState();
   };
 
-  useEffect(() => {
-    let idleTimer;
-    const idleTime = 7000;
 
-    const handleIdleTimeout = () => {
-      handleIdleState();
-    };
+  const resetIdleTimer = () => {
+    clearTimeout(idleTimer);
+    setIdle(false);
+    idleTimer = setTimeout(handleIdleTimeout, idleTime);
+  };
+  useEffect(() => {
 
     document.addEventListener('mousemove', resetIdleTimer);
     document.addEventListener('keypress', resetIdleTimer);
 
     idleTimer = setTimeout(handleIdleTimeout, idleTime);
-
+    console.log('idleTimer', idleTimer);
     return () => {
       clearTimeout(idleTimer);
       document.removeEventListener('mousemove', resetIdleTimer);
       document.removeEventListener('keypress', resetIdleTimer);
     };
-  }, [idle]);
+  }, [idle, idleTimer]);
 
   return (
     <LanguageProvider>

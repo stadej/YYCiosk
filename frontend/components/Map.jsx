@@ -1,8 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import toilet from '/public/toilet-o.png'
-import trash from '/public/trash-o.png'
+import toilet from '/src/assets/bathroom_icon.png'
+import trash from '/src/assets/trash_icon.png'
+import tourism from '/src/assets/trash_icon.png'
+import food from '/src/assets/food_icon.png';
+import money from '/src/assets/money_icon.png';
+import wifi from '/src/assets/wifi_icon.png';
+import library from '/src/assets/library_icon.png';
+import emergency from '/src/assets/emergency_icon.png';
 import { useLocation } from "@/src/contexthooks/useLocation";
 import { Button } from "./ui/button";
+import { useLayers } from "@/src/contexthooks/useLayers";
 
 let map;
 
@@ -17,6 +24,8 @@ const KIOSKCOORDS = {
 export default function Map() {
   const mapRef = useRef();
   const locationProvider = useLocation();
+  const layerProvider = useLayers();
+  let layers = layerProvider.getLayers();
 
   const APIKEY = "AAPK32a42f389c19427797b066aae489e1051fCSRLZe461fHqMhXOmahERtRv77LiehtVjik54LU5ubiFV_G87C9Y5C5JAGHWpz";
   const BASEMAP = "arcgis/streets";
@@ -39,9 +48,7 @@ export default function Map() {
     
       //map.setView([51,-114], 9);
 
-      const trashCanMarkerOptions = {
-        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: trashIcon})
-      }
+
 
       const trashIcon = L.icon({
         iconUrl: trash,
@@ -51,11 +58,6 @@ export default function Map() {
         shadowAnchor: [4, 62],  // the same for the shadow
         popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       })
-
-      const washroomMarkerOptions = {
-        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: washroomIcon})
-      }
-
       const washroomIcon = L.icon({
         iconUrl: toilet,
         iconSize: [50, 50], // size of the icon
@@ -64,16 +66,124 @@ export default function Map() {
         shadowAnchor: [4, 62],  // the same for the shadow
         popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       })
+      const foodIcon = L.icon({
+        iconUrl: food,
+        iconSize: [50, 50], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      })
+      const emergencyIcon = L.icon({
+        iconUrl: emergency,
+        iconSize: [50, 50], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      })
+      const moneyIcon = L.icon({
+        iconUrl: money,
+        iconSize: [50, 50], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      })
+      const tourismIcon = L.icon({
+        iconUrl: tourism,
+        iconSize: [50, 50], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      })
+      const wifiIcon = L.icon({
+        iconUrl: wifi,
+        iconSize: [50, 50], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      })
+      const libraryIcon = L.icon({
+        iconUrl: library,
+        iconSize: [50, 50], // size of the icon
+        shadowSize: [50, 64], // size of the shadow
+        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      })
+      const bathroomMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: washroomIcon})
+      }
+      const trashCanMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: trashIcon})
+      }
+      const foodMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: foodIcon})
+      }
+      const libraryMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: libraryIcon})
+      }
+      const wifiMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: wifiIcon})
+      }
+      const moneyMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: moneyIcon})
+      }
+      const emergencyMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: emergencyIcon})
+      }
+      const tourismMarkerOptions = {
+        pointToLayer: (feature, latLng) => L.marker(latLng, {icon: tourismIcon})
+      }
+
 
       let trashCan;
       let washrooms;
-      let iconsActive = {"trash": ["https://data.calgary.ca/resource/fwyk-8pth.geojson", trashCanMarkerOptions], "washrooms": ["https://data.calgary.ca/resource/jjkg-kv4n.geojson", washroomMarkerOptions]};
-      Object.keys(iconsActive).forEach(async (tag, index) => {
-        await getGeoJson(iconsActive[tag][0]).then(data => {
-          let temp = L.geoJson(data, iconsActive[tag][1]).bindPopup("Information from " + iconsActive[tag]);
-          console.log(tag);
-          temp.addTo(map);
-        });
+      let markerOptions;
+      Object.keys(layers).forEach(async () => {
+        for (let i = 0; i < layers.length; i++) {
+          console.log(layers[i]);
+          console.log(layers[i].imageUrl);
+          if (layers[i].active === true) {
+            await getGeoJson(layers[i].dataUrl).then(data => {
+              switch (layers[i].tagName) {
+                case "Food":
+                  markerOptions = foodMarkerOptions;
+                  break;
+                case "Bathroom":
+                  markerOptions = bathroomMarkerOptions;
+                  break;
+                case "Trash":
+                  markerOptions = trashCanMarkerOptions;
+                  break;
+                case "Tourism":
+                  markerOptions = tourismMarkerOptions;
+                  break;
+                case "Money":
+                  markerOptions = moneyMarkerOptions;
+                  break;
+                case "Wifi":
+                  markerOptions = wifiMarkerOptions;
+                  break;
+                case "Library":
+                  markerOptions = libraryMarkerOptions;
+                  break;
+                case "Emergency":
+                  markerOptions = emergencyMarkerOptions;
+                  break;
+                default:
+                  break;
+              }
+              let temp = L.geoJson(data, markerOptions).bindPopup("Information from " + layers[i].dataUrl);
+              temp.addTo(map);
+            });
+          }
+
+        }
+
       })
 
       //getGeoJson("https://data.calgary.ca/resource/fwyk-8pth.geojson").then(data => {

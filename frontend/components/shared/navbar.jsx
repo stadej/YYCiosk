@@ -1,9 +1,65 @@
+import { useLayers } from '@/src/contexthooks/useLayers';
 import React, { useState, useEffect } from 'react';
+import { useAudioRecorder } from 'react-audio-voice-recorder';
 
 export default function Navbar() {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const layerProvider=useLayers();
 
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const {
+    startRecording,
+    stopRecording,
+    togglePauseResume,
+    recordingBlob,
+    isRecording,
+    isPaused,
+    recordingTime,
+    mediaRecorder
+  } = useAudioRecorder();
+  
+  const handleRecording = () => {
+    console.log(isRecording)
+    if (isRecording) {
+      stopRecording();
+    } else {
+      startRecording();
+    }
+  }
   useEffect(() => {
+    const sendRecordingToServer = async () => {
+      if (recordingBlob) {
+        try {
+          console.log('Uploading audio:', recordingBlob)
+          const url = URL.createObjectURL(recordingBlob);
+          const response = await fetch('/api/voice', {
+            method: 'POST',
+            body: recordingBlob,
+          });
+  
+          if (response.ok) {
+            const jsonResponse = await response.json();
+            console.log('Audio uploaded successfully:', jsonResponse);
+            if(jsonResponse.user_request !== "does not exist"){
+              console.log(layerProvider.layers)
+              layerProvider.toggleLayer(jsonResponse.user_request)            // Handle the JSON response here
+
+            }
+          } else {
+            console.error('Error uploading audio:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error uploading audio:', error);
+        }
+      }
+    };
+  
+    sendRecordingToServer(); // Call the function immediately
+  
+    return () => {
+      // Cleanup code, if needed
+    };
+  }, [recordingBlob]);
+    useEffect(() => {
       const intervalId = setInterval(() => {
           const newDate = new Date();
           newDate.setSeconds(0);
@@ -106,9 +162,15 @@ export default function Navbar() {
       <div className="flex flex-col items-start justify-start pt-[7px] px-0 pb-0 text-45xl">
         <div className="flex flex-row items-start justify-start">
           <div className="flex flex-col items-start justify-start pt-2 px-0 pb-0">
+            <div className='flex gap-2'>
+                <div className='flex gap-2 mt-5'>
+                    <img onClick={handleRecording} width={50} height={50} src="/microphone.png" alt="microphone" />
+                    <img width={50} height={50} src="/translate.png" alt="microphone" />
+                </div>
             <div className="h-[87px] relative inline-block">
               <span className="font-extrabold">YYC</span>
               <span className="font-light">-iosk</span>
+            </div>
             </div>
           </div>
           <div className="h-[83px] w-[35px] relative text-29xl font-extrabold inline-block shrink-0 z-[1] ml-[-8px]">

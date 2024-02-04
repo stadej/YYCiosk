@@ -28,13 +28,17 @@ export const LayersProvider=({children})=>{
         let layerIndex = layers.findIndex(({tagName})=> tagName === e.target.id);
         layersDispatch({type:"toggle",index:layerIndex,active:!layers[layerIndex].active})
     }
-
+    const toggleLayer=(tag)=>{
+        let layerIndex = layers.findIndex(({tagName})=> tagName === tag);
+        layersDispatch({type:"toggle",index:layerIndex,active:!layers[layerIndex].active})
+    }
     return(
         <LayersContext.Provider value={
             {
                 getLayers,
                 layersDispatch,
-                handleClick
+                handleClick,
+                toggleLayer
             }
         }>
             {children}

@@ -1,0 +1,175 @@
+openapi: 3.0.3
+info:
+  title: YYC-osk
+  description: An application for helping newcomers find their way around Calgary.
+  version: "0.1.5"
+
+servers:
+  - url: http://localhost:5001
+    description: Local host
+
+paths:
+  /:
+    get:
+      summary: Detect server
+      description: Detect whether the server is running or not.
+      responses:
+        "200":
+          description: Server is running.
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /dataset/{name}:
+    parameters:
+    - name: name
+      description: "The name of the dataset to retrieve"
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Get a dataset
+      description: Get a dataset in JSON format.
+      requestBody:
+        description: "Location types for the dataset"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LocationTypes"
+      responses:
+        "200":
+          description: Dataset attached
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DataSet"
+        "403":
+          description: Dataset not found.
+          content:
+            application/json:
+              schema:
+                type: string
+        "404":
+          description: Dataset provider refused the request.
+          content:
+            application/json:
+              schema:
+                type: string
+        "503":
+          description: Dataset provider is unavailable.
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /maps:
+    post:
+      summary: Get map information
+      description: Get map information from a provider like Google Maps.
+      requestBody:
+        description: "Query string for map service provider"
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: Map information attached
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MapData"
+        "403":
+          description: Map information not found.
+          content:
+            application/json:
+              schema:
+                type: string
+        "404":
+          description: Map service provider denied the request.
+          content:
+            application/json:
+              schema:
+                type: string
+        "503":
+          description: Map service provider is unavailable.
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /voice:
+    post:
+      summary: Process a voice command
+      description: Audio is sent from the frontend and the converted command is returned.
+      requestBody:
+        description: "MP3 audio of the user's voice"
+        content:
+          audio/mpeg: {}
+      responses:
+        "200":
+          description: Audio response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VoiceConversion"
+        "404":
+          description: Conversion service refused to process the audio file.
+          content:
+            application/json:
+              schema:
+                type: string
+        "503":
+          description: Conversion service is unavailable.
+          content:
+            application/json:
+              schema:
+                type: string
+
+components:
+  schemas:
+    VoiceConversion:
+      type: object
+      properties:
+        language:
+          type: string
+        user_request:
+          type: string
+      required:
+        - language
+        - user_request
+    MapData:
+      type: object
+      properties:
+        data:
+          type: array
+          description: "Array of data objects"
+          items:
+            description: "Datum object"
+            type: object
+      required:
+        - data
+    LocationTypes:
+      type: object
+      properties:
+        locationTypes:
+          type: array
+          description: "Array of location types"
+          items:
+            description: "Location type"
+            type: string
+      required:
+        - locationTypes
+    DataSet:
+      type: object
+      properties:
+        data:
+          type: array
+          description: "Array of data objects"
+          items:
+            description: "Datum object"
+            type: object
+      required:
+        - data

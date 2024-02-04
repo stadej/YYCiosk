@@ -10,6 +10,7 @@ import emergency from '/src/assets/emergency_icon.png';
 import { useLocation } from "@/src/contexthooks/useLocation";
 import { Button } from "./ui/button";
 import { useLayers } from "@/src/contexthooks/useLayers";
+import '../components/styles/Map.css'
 
 let map;
 

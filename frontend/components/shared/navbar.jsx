@@ -94,7 +94,7 @@ export default function Navbar() {
   
         // Extract current temperature and cloud cover from the response
         const hourlyData = data.hourly;
-        const temperature = hourlyData.temperature_2m[hourlyData.temperature_2m.length - 1];
+        const temperature = Math.ceil(hourlyData.temperature_2m[hourlyData.temperature_2m.length - 1]);
         const latestCloudCover = hourlyData.cloud_cover[hourlyData.cloud_cover.length - 1]
 
         setCurrentTemperature(temperature);

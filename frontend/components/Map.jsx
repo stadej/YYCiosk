@@ -10,6 +10,7 @@ import emergency from '/src/assets/emergency_icon.png';
 import { useLocation } from "@/src/contexthooks/useLocation";
 import { Button } from "./ui/button";
 import { useLayers } from "@/src/contexthooks/useLayers";
+import '../components/styles/Map.css'
 
 let map;
 
@@ -136,6 +137,8 @@ export default function Map() {
       let markerOptions;
       Object.keys(layers).forEach(async () => {
         for (let i = 0; i < layers.length; i++) {
+          // // console.log(layers[i]);
+          // console.log(layers[i].imageUrl);
           if (layers[i].active === true) {
             await getGeoJson(layers[i].dataUrl).then(res => {
               switch (layers[i].tagName) {
@@ -204,6 +207,7 @@ export default function Map() {
     let youAreHere;
     switch (e.target.id) {
       case "0":
+        //  console.log(locationProvider.getLocation());
         map.setView(locationProvider.getLocation(), 15);
         youAreHere = L.circleMarker(locationProvider.getLocation(), {
           radius: 10,
@@ -273,7 +277,7 @@ export default function Map() {
     }
   }
   return (
-    <>
+    <div className= "w-full flex flex-col justify-start items-center overflow-hidden border-box mx-2 my-2">
       <div className="kiosk-btn-container flex gap-3">
         <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="0">Current Location</Button>
         <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="1">Calgary Tower</Button>
@@ -283,6 +287,6 @@ export default function Map() {
         <Button className="kiosk-btn bg-red-900 hover:bg-black font-bold" onClick={(e) => setMapCoords(e)} id="5">Chinook</Button>
       </div>
       <div id="map" ref={mapRef}></div>
-    </>
+    </div>
   )
 }

@@ -169,11 +169,6 @@ export default function Navbar() {
             <div className='flex gap-2'>
                 <div className='flex gap-2 mt-5'>
                     <img onClick={handleRecording} width={50} height={50} src="/microphone.png" alt="microphone" />
-<<<<<<< HEAD
-                    
-
-        
->>>>>>> ab9ffadf3e39b9c1debff07ada5c84869c12bbc8
                 </div>
                 <Select options={options} />
             <div className="h-[87px] relative inline-block">

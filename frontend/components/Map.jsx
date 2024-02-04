@@ -140,7 +140,7 @@ export default function Map() {
           // // console.log(layers[i]);
           // console.log(layers[i].imageUrl);
           if (layers[i].active === true) {
-            await getGeoJson(layers[i].dataUrl).then(data => {
+            await getGeoJson(layers[i].dataUrl).then(res => {
               switch (layers[i].tagName) {
                 case "Food":
                   markerOptions = foodMarkerOptions;
@@ -169,8 +169,10 @@ export default function Map() {
                 default:
                   break;
               }
-              let temp = L.geoJson(data, markerOptions).bindPopup("Information from " + layers[i].dataUrl);
+              let temp = L.geoJson(res, markerOptions).bindPopup("This is a " + layers[i].tagName);
               temp.addTo(map);
+              /*let temp = L.geoJson(res.data, markerOptions).bindPopup("This is a " + layers[i].tagName);
+              temp.addTo(map);*/
             });
           }
         }
@@ -190,27 +192,87 @@ export default function Map() {
         console.log(err)
     })
   }
+  /*const backendApi = async (link) => {
+    fetch(link, {
+      method: "POST",
+    })
+    .then((res) => res.json())
+    .then((json) => {
+      return json;
+    });
+  }
+  backendApi("/api/data/plumbing");*/
 
   const setMapCoords = (e) => {
+    let youAreHere;
     switch (e.target.id) {
       case "0":
-      //  console.log(locationProvider.getLocation());
+        //  console.log(locationProvider.getLocation());
         map.setView(locationProvider.getLocation(), 15);
+        youAreHere = L.circleMarker(locationProvider.getLocation(), {
+          radius: 10,
+          opacity: 8,
+          color: "#ff0000",
+          follColor: "#ff0000",
+          fillOpacity: 0.5
+        });
+        youAreHere.addTo(map).bindPopup("You are here!");
+        console.log(locationProvider.getLocation());
         break;
       case "1":
         map.setView(KIOSKCOORDS[1], 15);
+        youAreHere = L.circleMarker(KIOSKCOORDS[1], {
+          radius: 10,
+          opacity: 8,
+          color: "#ff0000",
+          follColor: "#ff0000",
+          fillOpacity: 0.5
+        });
+        youAreHere.addTo(map).bindPopup("You are here!");
         break;
       case "2":
         map.setView(KIOSKCOORDS[2], 15);
+        youAreHere = L.circleMarker(KIOSKCOORDS[2], {
+          radius: 10,
+          opacity: 8,
+          color: "#ff0000",
+          follColor: "#ff0000",
+          fillOpacity: 0.5
+        });
+        youAreHere.addTo(map).bindPopup("You are here!");
         break;
       case "3":
         map.setView(KIOSKCOORDS[3], 15);
+        youAreHere = L.circleMarker(KIOSKCOORDS[3], {
+          radius: 10,
+          opacity: 8,
+          color: "#ff0000",
+          follColor: "#ff0000",
+          fillOpacity: 0.5
+        });
+        youAreHere.addTo(map).bindPopup("You are here!");
         break;
       case "4":
         map.setView(KIOSKCOORDS[4], 15);
+        youAreHere = L.circleMarker(KIOSKCOORDS[4], {
+          radius: 10,
+          opacity: 8,
+          color: "#ff0000",
+          follColor: "#ff0000",
+          fillOpacity: 0.5
+        });
+        youAreHere.addTo(map).bindPopup("You are here!");
         break;
       case "5":
         map.setView(KIOSKCOORDS[5], 15);
+        youAreHere = L.circleMarker(KIOSKCOORDS[5], {
+          radius: 10,
+          opacity: 8,
+          color: "#ff0000",
+          follColor: "#ff0000",
+          fillOpacity: 0.5
+        });
+        youAreHere.addTo(map).bindPopup("You are here!");
         break;
     }
   }
@@ -228,4 +290,3 @@ export default function Map() {
     </div>
   )
 }
-

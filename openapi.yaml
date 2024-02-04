@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: YYC-osk
   description: An application for helping newcomers find their way around Calgary.
-  version: "0.1.4"
+  version: "0.1.5"
 
 servers:
   - url: http://localhost:5001
@@ -51,6 +51,18 @@ paths:
             application/json:
               schema:
                 type: string
+        "404":
+          description: Dataset provider refused the request.
+          content:
+            application/json:
+              schema:
+                type: string
+        "503":
+          description: Dataset provider is unavailable.
+          content:
+            application/json:
+              schema:
+                type: string
 
   /maps:
     post:
@@ -82,7 +94,7 @@ paths:
               schema:
                 type: string
         "503":
-          description: Map service provider unavailable.
+          description: Map service provider is unavailable.
           content:
             application/json:
               schema:
@@ -103,8 +115,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/VoiceConversion"
+        "404":
+          description: Conversion service refused to process the audio file.
+          content:
+            application/json:
+              schema:
+                type: string
         "503":
-          description: Conversion service unavailable.
+          description: Conversion service is unavailable.
           content:
             application/json:
               schema:

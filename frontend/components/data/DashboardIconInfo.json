@@ -11,16 +11,16 @@
     {
         "imageUrl": "../../src/assets/bathroom_icon.png",
         "tagName": "Bathroom",
-        "dataUrl": "https://data.calgary.ca/resource/jjkg-kv4n.geojson",
+        "dataUrl": "/api/data/plumbing",
         "locationTypes": [],
-        "active": true,
+        "active": false,
         "minZoom": "2",
         "maxZoom": ""
     },
     {
         "imageUrl": "../../src/assets/trash_icon.png",
         "tagName": "Trash",
-        "dataUrl": "https://data.calgary.ca/resource/fwyk-8pth.geojson",
+        "dataUrl": "/api/data/garbage",
         "locationTypes": [],
         "active": false,
         "minZoom": "2",
@@ -56,7 +56,7 @@
     {
         "imageUrl": "../../src/assets/library_icon.png",
         "tagName": "Library",
-        "dataUrl": "https://data.calgary.ca/resource/x34e-bcjz.geojson",
+        "dataUrl": "/api/data/communityservices",
         "locationTypes": [],
         "active": false,
         "minZoom": "2",
@@ -67,10 +67,8 @@
         "tagName": "Emergency",
         "dataUrl": "https://data.calgary.ca/resource/s6f4-ijrf.geojson",
         "locationTypes": [],
-        "active": true,
+        "active": false,
         "minZoom": "2",
         "maxZoom": ""
     }
-
-
 ]

@@ -14,7 +14,7 @@ function Iconbar() {
   return (
     <div className='dashboard--icons sticky top-[100vh],'>
       {/* div that has background color red, and holds icon divs */}
-      <div className='dashboard--icons--list'>
+      <div style={{display: 'flex'}}>
         {Object.values(layerProvider.getLayers()).map(layer=>{
           return(
               <DashboardIcon key={layer.tagName} handleClick={layerProvider.handleClick} imageIcon={layer.imageUrl} iconLabel={layer.tagName}/>

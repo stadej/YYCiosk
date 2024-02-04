@@ -30,8 +30,12 @@ export const LayersProvider=({children})=>{
     }
     const toggleLayer=(tag)=>{
         let layerIndex = layers.findIndex(({tagName})=> tagName === tag);
-        layersDispatch({type:"toggle",index:layerIndex,active:!layers[layerIndex].active})
+        if(layerIndex > 0){
+            layersDispatch({type:"toggle",index:layerIndex,active:!layers[layerIndex].active})
+        }
     }
+    useEffect(()=>{
+    },[layers])
     return(
         <LayersContext.Provider value={
             {

@@ -22,9 +22,6 @@ function App() {
                           <Map />
                       </div>
                   </section>
-                  <div class="h-16">
-                  </div>
-
 
                   <Iconbar />
               </div>

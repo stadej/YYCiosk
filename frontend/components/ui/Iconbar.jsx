@@ -12,7 +12,7 @@ function Iconbar() {
 
   // languageProvider.setLanguage("French")
   return (
-    <div className='dashboard--icons sticky top-[100vh],'>
+    <div className='dashboard--icons sticky justify-self-end'>
       {/* div that has background color red, and holds icon divs */}
       <div style={{display: 'flex'}}>
         {Object.values(layerProvider.getLayers()).map(layer=>{

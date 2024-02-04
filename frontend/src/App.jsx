@@ -15,18 +15,16 @@ function App() {
     <LanguageProvider>
       <LocationProvider>
           <LayersProvider>
-            <Navbar/>
-              <div className="w-full  relative bg-white overflow-hidden flex flex-col items-center justify-start pt-[23px] px-0 pb-0 box-border gap-[20px] tracking-[normal] mq450:gap-[73px] mq675:gap-[73px]">
-                  <section className="w-[705px] flex flex-row items-start justify-start pt-0 px-5 pb-[66px] box-border max-w-full mq450:pb-7 mq450:box-border mq900:pb-[43px] mq900:box-border">
-                      <div
-                          className="h-[758px] flex-1 relative rounded-[10px] max-w-full overflow-hidden object-cover"
-                      >
-                          <Map />
-                      </div>
-                  </section>
-
-                  <Iconbar />
-              </div>
+            <header className="absolute w-screen h-screen flex flex-col items-center justify-start gap-[31px] text-left text-29xl text-crimson font-open-sans mq675:gap-[31px]">
+              <Navbar/>
+                <div className="w-full h-full bg-white overflow-hidden flex flex-col items-center justify-end py-[10px] px-[10px] box-border gap-[20px]">
+                  
+                  <Map />
+                    <div className="w-full flex flex-row items-start justify-self-end">
+                      <Iconbar />
+                    </div>
+                </div>
+              </header>
           </LayersProvider>
       </LocationProvider>
     </LanguageProvider>

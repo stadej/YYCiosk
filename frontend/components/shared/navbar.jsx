@@ -141,8 +141,8 @@ export default function Navbar() {
    const options = ['English', 'French', 'Spanish','Chinese', 'Hindi','Filipino'];
 
   return (
-    <header className="self-stretch flex flex-col items-center justify-start gap-[31px] max-w-full text-left text-29xl text-crimson font-open-sans mq675:gap-[31px]">
-    <div className="w-[998px] flex flex-row items-start justify-between py-0 px-5 box-border gap-[20px] max-w-full">
+    <>
+    <div className="w-[998px] flex flex-row items-start justify-between py-0 px-5 box-border gap-[20px]">
       <div className="w-[319px] flex flex-row items-center justify-start gap-[9px]">
         <img
           className="h-[117px] w-[107px] relative object-cover"
@@ -187,13 +187,7 @@ export default function Navbar() {
         </div>
       </div>
     </div>
-    <img
-      className="self-stretch h-[8.1px] relative max-w-full overflow-hidden shrink-0 object-contain"
-      loading="eager"
-      alt=""
-      src="/line-1.svg"
-    />
-  </header>
+  </>
 )
 }
 

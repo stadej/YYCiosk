@@ -96,7 +96,7 @@ export default function Navbar() {
   
         // Extract current temperature and cloud cover from the response
         const hourlyData = data.hourly;
-        const temperature = hourlyData.temperature_2m[hourlyData.temperature_2m.length - 1];
+        const temperature = Math.ceil(hourlyData.temperature_2m[hourlyData.temperature_2m.length - 1]);
         const latestCloudCover = hourlyData.cloud_cover[hourlyData.cloud_cover.length - 1]
 
         setCurrentTemperature(temperature);
@@ -169,7 +169,11 @@ export default function Navbar() {
             <div className='flex gap-2'>
                 <div className='flex gap-2 mt-5'>
                     <img onClick={handleRecording} width={50} height={50} src="/microphone.png" alt="microphone" />
+<<<<<<< HEAD
                     
+
+        
+>>>>>>> ab9ffadf3e39b9c1debff07ada5c84869c12bbc8
                 </div>
                 <Select options={options} />
             <div className="h-[87px] relative inline-block">

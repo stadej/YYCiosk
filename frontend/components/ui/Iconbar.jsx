@@ -10,14 +10,17 @@ function Iconbar() {
 
   const layerProvider= useLayers()
 
-  // languageProvider.setLanguage("French")
+  // languageProvider.setLanguage("Hindi")
+
+  
   return (
     <div className='dashboard--icons sticky top-[100vh],'>
       {/* div that has background color red, and holds icon divs */}
       <div style={{display: 'flex'}}>
         {Object.values(layerProvider.getLayers()).map(layer=>{
+          console.log(layer, language)
           return(
-              <DashboardIcon key={layer.tagName} handleClick={layerProvider.handleClick} imageIcon={layer.imageUrl} iconLabel={layer.tagName}/>
+              <DashboardIcon key={layer.tagName} handleClick={layerProvider.handleClick} imageIcon={layer.imageUrl} iconLabel={language[layer.tagName]}/>
           )
         })}
         {/*<DashboardIcon imageIcon={"../../src/assets/food_icon.png"} iconLabel={"Food"}/>*/}

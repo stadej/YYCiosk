@@ -1,0 +1,9 @@
+
+.kiosk-btn-container {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.kiosk-btn-container::-webkit-scrollbar {
+    display: none;
+}

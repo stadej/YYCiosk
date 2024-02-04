@@ -166,7 +166,7 @@ export default function Navbar() {
             <div className='flex gap-2'>
                 <div className='flex gap-2 mt-5'>
                     <img onClick={handleRecording} width={50} height={50} src="/microphone.png" alt="microphone" />
-                    <img width={50} height={50} src="/translate.png" alt="microphone" />
+                    <img width={50} height={50} src="/translate.png" alt="microphone" onClick={()=>languageProvider.setLanguage("French")}/>
                 </div>
             <div className="h-[87px] relative inline-block">
               <span className="font-extrabold">YYC</span>

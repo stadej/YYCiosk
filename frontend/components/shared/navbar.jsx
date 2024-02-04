@@ -2,8 +2,10 @@ import { useLayers } from '@/src/contexthooks/useLayers';
 import React, { useState, useEffect } from 'react';
 import { useAudioRecorder } from 'react-audio-voice-recorder';
 import {useLanguage} from "@/src/contexthooks/useLanguages.jsx";
+import Select from '../ui/translate';
 
 export default function Navbar() {
+  const [micUrl, setmicUrl] = useState('/microphone.png');
   const layerProvider=useLayers();
   const languageProvider = useLanguage();
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -22,7 +24,9 @@ export default function Navbar() {
     console.log(isRecording)
     if (isRecording) {
       stopRecording();
+      setmicUrl('/microphone.png');
     } else {
+      setmicUrl('/microphone-inverted.png');
       startRecording();
     }
   }
@@ -53,6 +57,7 @@ export default function Navbar() {
         }
       }
     };
+    
   
     sendRecordingToServer(); // Call the function immediately
   
@@ -133,6 +138,7 @@ export default function Navbar() {
     }
     else return 'sunny.jpg';
   };
+   const options = ['English', 'French', 'Spanish','Chinese', 'Hindi','Filipino'];
 
   return (
     <>
@@ -165,9 +171,10 @@ export default function Navbar() {
           <div className="flex flex-col items-start justify-start pt-2 px-0 pb-0">
             <div className='flex gap-2'>
                 <div className='flex gap-2 mt-5'>
-                    <img onClick={handleRecording} width={50} height={50} src="/microphone.png" alt="microphone" />
+                    <img onClick={handleRecording} width={50} height={50} src={micUrl} alt="microphone" />
                     <img width={50} height={50} src="/translate.png" alt="microphone" />
                 </div>
+                <Select options={options} />
             <div className="h-[87px] relative inline-block">
               <span className="font-extrabold">YYC</span>
               <span className="font-light">-iosk</span>

@@ -10,6 +10,7 @@ import emergency from '/src/assets/emergency_icon.png';
 import { useLocation } from "@/src/contexthooks/useLocation";
 import { Button } from "./ui/button";
 import { useLayers } from "@/src/contexthooks/useLayers";
+import '../components/styles/Map.css'
 
 let map;
 
@@ -136,8 +137,8 @@ export default function Map() {
       let markerOptions;
       Object.keys(layers).forEach(async () => {
         for (let i = 0; i < layers.length; i++) {
-          console.log(layers[i]);
-          console.log(layers[i].imageUrl);
+          // // console.log(layers[i]);
+          // console.log(layers[i].imageUrl);
           if (layers[i].active === true) {
             await getGeoJson(layers[i].dataUrl).then(data => {
               switch (layers[i].tagName) {
@@ -193,7 +194,7 @@ export default function Map() {
   const setMapCoords = (e) => {
     switch (e.target.id) {
       case "0":
-        console.log(locationProvider.getLocation());
+      //  console.log(locationProvider.getLocation());
         map.setView(locationProvider.getLocation(), 15);
         break;
       case "1":

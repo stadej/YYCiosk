@@ -2,6 +2,7 @@ import { useLayers } from '@/src/contexthooks/useLayers';
 import React, { useState, useEffect } from 'react';
 import { useAudioRecorder } from 'react-audio-voice-recorder';
 import {useLanguage} from "@/src/contexthooks/useLanguages.jsx";
+import Select from '../ui/translate';
 
 export default function Navbar() {
   const layerProvider=useLayers();
@@ -53,6 +54,7 @@ export default function Navbar() {
         }
       }
     };
+    
   
     sendRecordingToServer(); // Call the function immediately
   
@@ -133,6 +135,7 @@ export default function Navbar() {
     }
     else return 'sunny.jpg';
   };
+   const options = ['English', 'French', 'Spanish','Chinese', 'Hindi','Filipino'];
 
   return (
     <header className="self-stretch flex flex-col items-center justify-start gap-[31px] max-w-full text-left text-29xl text-crimson font-open-sans mq675:gap-[31px]">
@@ -166,8 +169,9 @@ export default function Navbar() {
             <div className='flex gap-2'>
                 <div className='flex gap-2 mt-5'>
                     <img onClick={handleRecording} width={50} height={50} src="/microphone.png" alt="microphone" />
-                    <img width={50} height={50} src="/translate.png" alt="microphone" />
+                    
                 </div>
+                <Select options={options} />
             <div className="h-[87px] relative inline-block">
               <span className="font-extrabold">YYC</span>
               <span className="font-light">-iosk</span>

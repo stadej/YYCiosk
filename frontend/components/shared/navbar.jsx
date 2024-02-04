@@ -1,7 +1,10 @@
+import { useLayers } from '@/src/contexthooks/useLayers';
 import React, { useState, useEffect } from 'react';
 import { useAudioRecorder } from 'react-audio-voice-recorder';
 
 export default function Navbar() {
+  const layerProvider=useLayers();
+
   const [currentDate, setCurrentDate] = useState(new Date());
   const {
     startRecording,
@@ -36,8 +39,11 @@ export default function Navbar() {
           if (response.ok) {
             const jsonResponse = await response.json();
             console.log('Audio uploaded successfully:', jsonResponse);
-  
-            // Handle the JSON response here
+            if(jsonResponse.user_request !== "does not exist"){
+              console.log(layerProvider.layers)
+              layerProvider.toggleLayer(jsonResponse.user_request)            // Handle the JSON response here
+
+            }
           } else {
             console.error('Error uploading audio:', response.statusText);
           }

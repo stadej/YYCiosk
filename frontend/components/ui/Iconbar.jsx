@@ -10,7 +10,7 @@ function Iconbar() {
 
   const layerProvider= useLayers()
 
-  // languageProvider.setLanguage("French")
+  languageProvider.setLanguage("French")
   return (
     <div className='dashboard--icons sticky top-[100vh],'>
       {/* div that has background color red, and holds icon divs */}

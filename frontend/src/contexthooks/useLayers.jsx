@@ -29,6 +29,10 @@ export const LayersProvider=({children})=>{
         layersDispatch({type:"toggle",index:layerIndex,active:!layers[layerIndex].active})
     }
 
+    useEffect(() => {
+        // console.log(layers);
+    }, [layers]);
+
     return(
         <LayersContext.Provider value={
             {

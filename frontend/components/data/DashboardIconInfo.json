@@ -20,7 +20,7 @@
     {
         "imageUrl": "../../src/assets/trash_icon.png",
         "tagName": "Trash",
-        "dataUrl": "",
+        "dataUrl": "https://data.calgary.ca/resource/fwyk-8pth.geojson",
         "locationTypes": [],
         "active": false,
         "minZoom": "2",
@@ -56,7 +56,7 @@
     {
         "imageUrl": "../../src/assets/library_icon.png",
         "tagName": "Library",
-        "dataUrl": "",
+        "dataUrl": "https://data.calgary.ca/resource/x34e-bcjz.geojson",
         "locationTypes": [],
         "active": false,
         "minZoom": "2",

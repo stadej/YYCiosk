@@ -34,8 +34,7 @@ export const LayersProvider=({children})=>{
             layersDispatch({type:"toggle",index:layerIndex,active:!layers[layerIndex].active})
         }
     }
-    useEffect(()=>{
-    },[layers])
+
     return(
         <LayersContext.Provider value={
             {

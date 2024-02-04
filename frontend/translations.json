@@ -1,5 +1,6 @@
 {
     "English": {
+        "Short": "EN",
         "Food": "Food",
         "Water": "Water",
         "Bathroom": "Bathroom",
@@ -11,6 +12,7 @@
     },
 
     "French": {
+        "Short": "FR",
         "Food": "Nourriture",
         "Water": "Eau",
         "Bathroom": "Toilettes",
@@ -22,6 +24,7 @@
     },
 
     "Spanish": {
+        "Short": "ES",
         "Food": "Alimento",
         "Water": "Agua",
         "Bathroom": "Baño",
@@ -33,6 +36,7 @@
     },
 
     "Chinese": {
+        "Short": "zh",
         "Food": "食物",
         "Water": "水",
         "Bathroom": "浴室",
@@ -44,6 +48,7 @@
     },
 
     "Hindi": {
+        "Short": "hi",
         "Food": "खाना",
         "Water": "पानी",
         "Bathroom": "स्नानघर",
@@ -55,6 +60,7 @@
     },
 
     "Filipino": {
+        "Short":"fil",
         "Food": "Pagkain",
         "Water": "Tubig",
         "Bathroom": "Banyo",

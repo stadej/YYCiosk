@@ -2,16 +2,17 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { useLanguage } from '@/src/contexthooks/useLanguages';
+import {useLanguage} from '@/src/contexthooks/useLanguages';
 const Select = ({ options }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
+  const languageProvider = useLanguage()
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
-    const languageProvider = useLanguage()
-    languageProvider.setLanguage(option)
+     languageProvider.setLanguage(option)
     setIsOpen(false);
+    console.log(option)
     
   };
  

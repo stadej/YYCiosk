@@ -21,7 +21,7 @@ const KIOSKCOORDS = {
   "4": [51.134695, -114.239238],
   "5": [50.998362, -114.072767]
 }
-const APIKEY = "AAPK32a42f389c19427797b066aae489e1051fCSRLZe461fHqMhXOmahERtRv77LiehtVjik54LU5ubiFV_G87C9Y5C5JAGHWpz";
+const APIKEY = undefined;
 const BASEMAP = "arcgis/streets";
 
 

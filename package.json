@@ -8,7 +8,9 @@
     "dev": "npm-run-all --parallel start:frontend start:backend",
     "build": "cd frontend && npm run build",
     "start:frontend": "cd frontend && npm run dev",
-    "start:backend": "cd backend && nodemon index.js"
+    "start:backend": "cd backend && nodemon index.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d ./frontend/dist"
   },
   "keywords": [],
   "author": "",
@@ -24,5 +26,8 @@
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "vite": "^5.4.5"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
   }
 }

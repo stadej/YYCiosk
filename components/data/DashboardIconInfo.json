@@ -1,24 +1,24 @@
 [
     {
-        "imageUrl": "../../src/assets/food_icon.png",
+        "imageUrl": "food_icon.png",
         "tagName": "Food",
-        "dataUrl": "",
+        "dataUrl": "https://data.calgary.ca/resource/vdjc-pybd.geojson?$where=licencetypes%20like%20%27%25FOOD%20SERVICE%25%27",
         "locationTypes": [],
         "active": false,
         "minZoom": "2",
         "maxZoom": ""
     },
     {
-        "imageUrl": "../../src/assets/bathroom_icon.png",
+        "imageUrl": "bathroom_icon.png",
         "tagName": "Bathroom",
-        "dataUrl": "/api/data/plumbing",
+        "dataUrl": "https://data.calgary.ca/resource/jjkg-kv4n.geojson?asset_type=WASHROOM",
         "locationTypes": [],
         "active": false,
         "minZoom": "2",
         "maxZoom": ""
     },
     {
-        "imageUrl": "../../src/assets/trash_icon.png",
+        "imageUrl": "trash_icon.png",
         "tagName": "Trash",
         "dataUrl": "/api/data/garbage",
         "locationTypes": [],
@@ -27,16 +27,16 @@
         "maxZoom": ""
     },
     {
-        "imageUrl": "../../src/assets/tourism_icon.png",
+        "imageUrl": "tourism_icon.png",
         "tagName": "Tourism",
-        "dataUrl": "",
+        "dataUrl": "https://data.calgary.ca/resource/x34e-bcjz.geojson?type=Visitor%20Info",
         "locationTypes": [],
         "active": false,
         "minZoom": "2",
         "maxZoom": ""
     },
     {
-        "imageUrl": "../../src/assets/money_icon.png",
+        "imageUrl": "money_icon.png",
         "tagName": "Bank",
         "dataUrl": "",
         "locationTypes": "",
@@ -45,7 +45,7 @@
         "maxZoom": ""
     },
     {
-        "imageUrl": "../../src/assets/wifi_icon.png",
+        "imageUrl": "wifi_icon.png",
         "tagName": "Wifi",
         "dataUrl": "",
         "locationTypes": [],
@@ -54,16 +54,16 @@
         "maxZoom": ""
     },
     {
-        "imageUrl": "../../src/assets/library_icon.png",
+        "imageUrl": "library_icon.png",
         "tagName": "Library",
-        "dataUrl": "/api/data/communityservices",
+        "dataUrl": "https://data.calgary.ca/resource/m9y7-ui7j.geojson",
         "locationTypes": [],
         "active": false,
         "minZoom": "2",
         "maxZoom": ""
     },
     {
-        "imageUrl": "../../src/assets/Emergency_icon.png",
+        "imageUrl": "emergency_icon.png",
         "tagName": "Emergency",
         "dataUrl": "https://data.calgary.ca/resource/s6f4-ijrf.geojson",
         "locationTypes": [],

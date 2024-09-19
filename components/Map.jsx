@@ -137,7 +137,7 @@ export default function Map() {
       let markerOptions;
       Object.keys(layers).forEach(async () => {
         for (let i = 0; i < layers.length; i++) {
-          // // console.log(layers[i]);
+          // console.log(layers[i]);
           // console.log(layers[i].imageUrl);
           if (layers[i].active === true) {
             await getGeoJson(layers[i].dataUrl).then(res => {
@@ -169,6 +169,7 @@ export default function Map() {
                 default:
                   break;
               }
+              console.log(res);
               let temp = L.geoJson(res, markerOptions).bindPopup("This is a " + layers[i].tagName);
               temp.addTo(map);
               /*let temp = L.geoJson(res.data, markerOptions).bindPopup("This is a " + layers[i].tagName);

@@ -14,7 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Set up Node.js version
         uses: actions/setup-node@v3
@@ -27,14 +28,11 @@ jobs:
           npm run build --if-present
           npm run test --if-present
 
-      - name: Zip artifact for deployment
-        run: zip release.zip ./dist/* -r -D
-
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: YYCiosk
-          path: release.zip
+          path: ./dist
 
   deploy:
     runs-on: ubuntu-latest
@@ -46,13 +44,13 @@ jobs:
       id-token: write #This is required for requesting the JWT
 
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: YYCiosk
-
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -67,5 +65,6 @@ jobs:
         with:
           app-name: 'YYCiosk'
           slot-name: 'Production'
-          package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          package: '.'
           
